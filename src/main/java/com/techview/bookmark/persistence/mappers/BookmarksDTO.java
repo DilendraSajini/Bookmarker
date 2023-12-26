@@ -84,6 +84,10 @@ public class BookmarksDTO {
 		this.hasPrevious = hasPrevious;
 	}
 
+	public BookmarksDTO() {
+		
+	}
+	
 	public BookmarksDTO(Page<BookmarkDTO> bookmarkPage) {
 		this.setData(bookmarkPage.getContent());
 		this.setTotalElements(bookmarkPage.getTotalElements());
