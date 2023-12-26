@@ -8,10 +8,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import com.techview.bookmark.persistence.entity.BookmarkEntity;
 import com.techview.bookmark.persistence.mappers.BookmarksDTO;
-import com.techview.bookmark.persistence.mappers.EntityMapper;
-import com.techview.bookmark.service.Bookmark;
+import com.techview.bookmark.persistence.mappers.BookmarkMapper;
+import com.techview.bookmark.service.BookmarkDTO;
 import com.techview.bookmark.service.out.BookmarkRepository;
 
 import jakarta.transaction.Transactional;
@@ -24,13 +23,13 @@ public class BookmarkRepositoryProxy implements BookmarkRepository{
 	private BookmarkJpaRepository bookmarkJpaRepository;
 	
 	@Autowired
-	private EntityMapper entityMapper;
+	private BookmarkMapper bookmarkMapper;
 	
 	@Override
 	public BookmarksDTO getBookMarks(Pageable pageable){
-		Page<BookmarkEntity> entityList = bookmarkJpaRepository.findAll(pageable);
-		List<Bookmark> bookmarkList = entityList.getContent().stream().map(e->  entityMapper.getBookMarkfromEntity(e)).collect(Collectors.toList()); 
-
-		return new BookmarksDTO(entityList, bookmarkList);
+		//Page<BookmarkEntity> entityList = bookmarkJpaRepository.findAll(pageable);
+		//List<BookmarkDTO> bookmarkList = entityList.getContent().stream().map(e->  bookmarkMapper.getBookMarkfromEntity(e)).collect(Collectors.toList()); 
+		Page<BookmarkDTO> bookmarkPage =  bookmarkJpaRepository.findAllProjectedToBookmarkDTO(pageable);
+		return new BookmarksDTO(bookmarkPage);
 				}
 }

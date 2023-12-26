@@ -2,7 +2,9 @@ package com.techview.bookmark.service;
 
 import java.time.Instant;
 
-public class Bookmark {
+import org.springframework.stereotype.Component;
+
+public class BookmarkDTO {
 
 	private Long id;
 	private String title;
@@ -41,7 +43,9 @@ public class Bookmark {
 		this.createdAt = createdAt;
 	}
 	
-	public Bookmark(Long id, String title, String url, Instant createdAt) {
+	public BookmarkDTO() {}
+	
+	public BookmarkDTO(Long id, String title, String url, Instant createdAt) {
 		super();
 		this.id = id;
 		this.title = title;

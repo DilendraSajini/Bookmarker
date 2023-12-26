@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techview.bookmark.persistence.mappers.BookmarksDTO;
-import com.techview.bookmark.service.Bookmark;
+import com.techview.bookmark.service.BookmarkDTO;
 import com.techview.bookmark.service.in.BookmarkService;
 
 @RestController
